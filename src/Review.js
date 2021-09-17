@@ -7,6 +7,7 @@ const Review = () => {
     const {name, job, image, text} = people[index]
 
     const checkNumber = (number)=> {
+        // to make sure that the index of the people array during the iteration exists
         if(number > people.length -1){
             return 0;
         }if(number < 0){
@@ -27,6 +28,16 @@ const Review = () => {
            return checkNumber(newIndex);
        }); 
     }; 
+
+    const random = ()=> {
+       let randomNumber = Math.floor(Math.random() * people.length); 
+       //to avoid the repetition
+       if(randomNumber === index){
+           randomNumber = index +1
+       };
+       setIndex(checkNumber(randomNumber));
+    }
+
     return ( <article className="review">
         <div className="img-container">
             <img src={image} alt={name} className='person-img' />
@@ -45,7 +56,7 @@ const Review = () => {
                 <FaChevronRight />
             </button>
         </div>
-            <button className='random-btn'>surprise me</button>
+            <button className='random-btn' onClick={random}>random review</button>
     </article> );
 }
  
